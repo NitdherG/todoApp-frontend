@@ -1,0 +1,77 @@
+<h2 mat-dialog-title>Editar tarea.</h2>
+<mat-dialog-content>
+  <form [formGroup]="editForm" class="form-container">
+    <mat-form-field appearance="outline">
+      <mat-label>ID de la tarea</mat-label>
+      <input
+        matInput
+        type="text"
+        id="id"
+        placeholder="Ingrese el ID de la tarea"
+        formControlName="id"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="field">
+      <mat-label>Nombre de la tarea</mat-label>
+      <input
+        matInput
+        type="text"
+        id="taskName"
+        placeholder="Ingrese el nombre de la tarea"
+        formControlName="name"
+      />
+      <mat-error *ngIf="editForm?.hasError('required')">
+        <strong>El nombre de la tarea es requerido</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Descripción de la tarea</mat-label>
+      <textarea
+        matInput
+        id="description"
+        placeholder="Ingrese la descripción de la tarea"
+        formControlName="description"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-label>Marcar como completada</mat-label>
+    <mat-slide-toggle formControlName="completed"></mat-slide-toggle>
+
+    <p class="highlight-date">
+      <strong>Fecha de creación:</strong>
+      {{ editForm.get("createdAt")?.value | date: "short" }}
+    </p>
+  </form>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cerrar</button>
+
+    @if (newTask) {
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="onSubmit()"
+        [disabled]="editForm.invalid || isLoading"
+      >
+        @if (isLoading) {
+          <mat-spinner diameter="20"></mat-spinner>
+        } @else {
+          <span>Crear tarea</span>
+        }
+      </button>
+    } @else {
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="onSubmit()"
+        [disabled]="editForm.invalid || isLoading"
+      >
+        @if (isLoading) {
+          <mat-spinner diameter="20"></mat-spinner>
+        } @else {
+          <span>Actualizar tarea</span>
+        }
+      </button>
+    }
+  </mat-dialog-actions>
+</mat-dialog-content>
