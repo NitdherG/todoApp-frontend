@@ -1,0 +1,38 @@
+<section class="login">
+  <div class="flex">
+    <h1>Bienvenido al ToDo App</h1>
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        class="form-control"
+        id="email"
+        aria-describedby="emailHelp"
+        placeholder="Ingrese su email"
+        formControlName="email"
+      />
+      @if (email?.hasError("email") && !email?.hasError("required")) {
+        <mat-error>Por favor, ingrese su email</mat-error>
+      }
+      @if (email?.hasError("required")) {
+        <mat-error>EL email es <strong>requerido</strong></mat-error>
+      }
+    </mat-form-field>
+    <button
+      mat-flat-button
+      type="submit"
+      color="primary"
+      [disabled]="loginForm.invalid || isLoading"
+    >
+      @if (isLoading) {
+        <mat-spinner diameter="20"></mat-spinner>
+      } @else {
+        <span>Entrar</span>
+      }
+    </button>
+  </form>
+</section>
