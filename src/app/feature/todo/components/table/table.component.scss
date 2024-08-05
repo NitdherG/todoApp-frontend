@@ -1,0 +1,157 @@
+.icon-table {
+  font-size: 1.3rem;
+}
+
+/* Ajusta el padding para hacer las celdas más grandes */
+.mat-cell,
+.mat-header-cell {
+  padding: 1rem; /* Ajusta el padding para hacer las celdas más grandes */
+  font-size: 1rem; /* Ajusta el tamaño de la fuente para que se vea más grande */
+}
+
+/* Ajusta el ancho mínimo de la columna 'name' */
+.mat-column-name {
+  min-width: 12.5rem;
+}
+
+/* Ajusta el ancho mínimo de la columna 'description' */
+.mat-column-description {
+  min-width: 18.75rem;
+}
+
+/* Ajusta el ancho mínimo de la columna 'completed' */
+.mat-column-completed {
+  min-width: 9.375rem;
+}
+
+/* Ajusta el ancho mínimo de la columna 'createdAt' */
+.mat-column-createdAt {
+  min-width: 12.5rem;
+}
+
+/* Ajusta el ancho mínimo de la columna 'action' */
+.mat-column-action {
+  min-width: 9.375rem;
+}
+
+/* Estilo para el progress bar */
+.mat-progress-bar {
+  width: 100%; /* Asegura que el progress bar ocupe todo el ancho de la celda */
+  height: 0.5rem; /* Ajusta la altura del progress bar */
+}
+
+/* Ajusta la altura de las filas de la tabla */
+.mat-mdc-row {
+  height: 5rem;
+}
+/* Estilos para el componente de la tabla */
+::ng-deep tr.completed-row {
+  background-color: #e0ffe0; /* Color de fondo para las filas completadas */
+}
+table {
+  width: 100%;
+}
+
+td.mat-mdc-column-star {
+  width: 20px;
+  padding-right: 8px !important;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-icon {
+  color: #3e75ff;
+}
+
+/* styles.scss */
+
+@media screen and (max-width: 960px) {
+  .mat-elevation-z8 {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .mat-mdc-header-row {
+    display: none;
+  }
+
+  tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .mat-mdc-table {
+    background: transparent;
+    * {
+      box-sizing: border-box;
+    }
+
+    .mat-mdc-row {
+      display: block;
+      overflow: hidden;
+      height: auto;
+      position: relative;
+      clear: both;
+      box-shadow:
+        0 2px 1px -1px rgba(0, 0, 0, 0.2),
+        0 1px 1px 0 rgba(0, 0, 0, 0.14),
+        0 1px 3px 0 rgba(0, 0, 0, 0.12);
+      background-color: #fff;
+      border-radius: 3px;
+      + .mat-mdc-row {
+        margin-top: 24px;
+      }
+    }
+
+    .mat-mdc-cell {
+      display: block;
+      width: 100%;
+      padding: 0 16px;
+      margin: 16px 0;
+      border: 0 none;
+      &:first-child {
+        padding: 0 48px 0 16px;
+        a {
+          font-size: 20px;
+          color: inherit;
+        }
+        &:before {
+          display: none;
+        }
+      }
+      &.m-card-description {
+        margin-top: -8px;
+        padding: 0 48px 0 16px;
+        color: rgba(0, 0, 0, 0.54);
+        height: auto;
+      }
+      &.has_label_on_mobile {
+        margin-top: 0;
+        margin-bottom: 0px;
+
+        &:before {
+          content: attr(data-label);
+          display: inline;
+          font-weight: normal;
+        }
+      }
+      &:last-child {
+        display: flex;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .status {
+      display: none;
+    }
+  }
+
+  .mat-paginator {
+    margin-top: 24px;
+  }
+}

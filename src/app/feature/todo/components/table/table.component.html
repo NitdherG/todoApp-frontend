@@ -1,0 +1,125 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-table-container">
+    <table
+      mat-table
+      [dataSource]="isLoading ? loadingRows : dataSource"
+    >
+      <!-- Columnas de la tabla aquí -->
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element" [@rowsAnimation]>
+          <ng-container *ngIf="!isLoading; else loading">
+            {{ element.name }}
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="m-card-description"
+          [@rowsAnimation]
+        >
+          <ng-container *ngIf="!isLoading; else loading">
+            {{ element.description }}
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="completed">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element" class="status" [@rowsAnimation]>
+          <ng-container *ngIf="!isLoading; else loading">
+            {{ element.completed ? "Completed" : "Pending" }}
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef>Date</th>
+        <td
+          mat-cell
+          *matCellDef="let element"
+          class="has_label_on_mobile"
+          [@rowsAnimation]
+        >
+          <ng-container *ngIf="!isLoading; else loading">
+            {{ element.createdAt | date: "short" }}
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let element" class="actions" [@rowsAnimation]>
+          <ng-container *ngIf="!isLoading; else loading">
+            <button
+              mat-icon-button
+              color="accent"
+              matTooltip="Marcar como Completado"
+              (click)="toggleCompleteTask(element)"
+            >
+              <fa-icon
+                class="icon-table"
+                [icon]="element.completed ? faCheckCircle : faCircle"
+              ></fa-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="primary"
+              matTooltip="Editar"
+              (click)="editTask(element)"
+            >
+              <fa-icon class="icon-table" [icon]="faEdit"></fa-icon>
+            </button>
+            <button
+              color="warn"
+              mat-icon-button
+              matTooltip="Eliminar"
+              (click)="deleteTask(element)"
+            >
+              <fa-icon class="icon-table" [icon]="faTrash"></fa-icon>
+            </button>
+          </ng-container>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        [ngClass]="{
+          'completed-row': row.completed,
+        }"
+      ></tr>
+    </table>
+  </div>
+  <!-- Paginador -->
+  <mat-paginator
+    [pageSize]="limit"
+    [length]="totalTasks"
+    (page)="onPageChange($event)"
+  >
+  </mat-paginator>
+</div>
+<ng-template #loading>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>open_in_new</mat-icon>
+    <span>Open risk plan</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>undo</mat-icon>
+    <span>Reset questionnairre</span>
+  </button>
+  <button mat-menu-item disabled>
+    <mat-icon>delete</mat-icon>
+    <span>Delete questionnairre</span>
+  </button>
+</mat-menu>
