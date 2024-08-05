@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Lo siento, el usuario no existe.</h2>
+<mat-dialog-content>
+  <p>Desea crear un nuevo usuario?</p>
+  <mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No, gracias</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Crear</button>
+  </mat-dialog-actions>
+</mat-dialog-content>
