@@ -1,0 +1,17 @@
+<div class="layout-container">
+  <header class="header">
+    <h1 class="title">To-Do App</h1>
+    <div class="header-buttons">
+      <button mat-raised-button color="primary" (click)="createNewTask()">
+        Crear Tarea
+      </button>
+      <button mat-raised-button color="warn" (click)="goToLogin()">
+        Volver al Login
+      </button>
+    </div>
+  </header>
+
+  <main class="content">
+    <app-table [excecuteCreate]="excecute"></app-table>
+  </main>
+</div>
