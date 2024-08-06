@@ -95,7 +95,7 @@ export class LoginComponent {
         };
         this.authService.createUser(newUser).subscribe({
           next: (data) => {
-            this.authService.setUserData(data);
+            this.authService.setUserData(data.user);
             this.router.navigate(['/todo']);
           },
           error: (error) => {

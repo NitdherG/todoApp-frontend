@@ -47,8 +47,11 @@ export class AuthService {
     return this.httpClient.get<User>(`${this.baseUrl}/users/${email}`);
   }
 
-  createUser(user: User): Observable<User> {
-    return this.httpClient.post<User>(`${this.baseUrl}/users`, user);
+  createUser(user: User): Observable<{ user: User; message: string }> {
+    return this.httpClient.post<{ user: User; message: string }>(
+      `${this.baseUrl}/users`,
+      user,
+    );
   }
 
   logout() {
