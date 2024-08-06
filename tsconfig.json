@@ -3,7 +3,7 @@
   "compileOnSave": false,
   "type": "module",
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
+    "outDir": "./dist/index.html",
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
