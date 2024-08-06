@@ -1,9 +1,6 @@
 <div class="example-container mat-elevation-z8">
   <div class="example-table-container">
-    <table
-      mat-table
-      [dataSource]="isLoading ? loadingRows : dataSource"
-    >
+    <table mat-table [dataSource]="isLoading ? loadingRows : dataSource">
       <!-- Columnas de la tabla aquí -->
 
       <ng-container matColumnDef="name">
@@ -92,11 +89,13 @@
       <tr
         mat-row
         *matRowDef="let row; columns: displayedColumns"
-        [ngClass]="{
-          'completed-row': row.completed,
-        }"
+        [ngClass]="{ 'completed-row': row.completed }"
       ></tr>
     </table>
+
+    <div *ngIf="!isLoading && dataSource.data.length === 0" class="no-data">
+      <p>No hay tareas</p>
+    </div>
   </div>
   <!-- Paginador -->
   <mat-paginator
@@ -106,7 +105,7 @@
   >
   </mat-paginator>
 </div>
+
 <ng-template #loading>
   <mat-progress-bar mode="indeterminate"></mat-progress-bar>
 </ng-template>
-

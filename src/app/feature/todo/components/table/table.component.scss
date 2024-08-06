@@ -66,7 +66,19 @@ td.mat-mdc-column-star {
   color: #3e75ff;
 }
 
-/* styles.scss */
+.no-data {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #757575; // Un gris neutro
+  margin: 20px 0;
+
+  p {
+    margin: 0;
+    padding: 10px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+}
 
 @media screen and (max-width: 960px) {
   .mat-elevation-z8 {
