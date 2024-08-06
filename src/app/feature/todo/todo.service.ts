@@ -69,7 +69,6 @@ export class TodoService {
     let params = new HttpParams().set('limit', limit.toString());
 
     // Log the startAfter parameter for debugging.
-    console.log('startAfter', startAfter);
     if (startAfter) {
       params = params.set('startAfter', startAfter);
     }
